@@ -10,6 +10,7 @@ const carouselItems = [
     description: 'Experience the taste of authentic Zanzibar breads and pastries',
     image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1526&auto=format&fit=crop',
     cta: 'Order Now',
+    link: '/products', // Added link for the products page
   },
   {
     id: 2,
@@ -70,7 +71,11 @@ const HeroCarousel = () => {
           <div className="carousel-content">
             <h1 className="carousel-title">{item.title}</h1>
             <p className="carousel-description">{item.description}</p>
-            <button className="carousel-cta">{item.cta}</button>
+            {item.link ? (
+              <a href={item.link} className="carousel-cta">{item.cta}</a>
+            ) : (
+              <button className="carousel-cta">{item.cta}</button>
+            )}
           </div>
         </div>
       ))}

@@ -63,10 +63,10 @@ const Footer = () => {
                 <Twitter size={20} strokeWidth={2} />
               </a>
             </div>
-            <div className="theme-toggle-wrapper">
+            {/* <div className="theme-toggle-wrapper">
               <ThemeToggle />
               <span className="theme-toggle-text">Toggle Theme</span>
-            </div>
+            </div> */}
           </div>
         </div>
         
