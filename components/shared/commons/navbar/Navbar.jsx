@@ -17,7 +17,7 @@ import {
 import Link from "next/link";
 import "./Navbar.css";
 import { useCartStore } from "@/stores/cart.store";
-import userAuthStore from "@/stores/auth.store";
+import { userAuthStore } from "@/stores/auth.store";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
