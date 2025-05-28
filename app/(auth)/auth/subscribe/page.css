@@ -1,0 +1,172 @@
+/* app/subscribe/page.css */
+
+/* Container */
+.subscribe-container {
+  max-width: 600px;
+  margin: #28a745;
+  padding: 20px;
+  background: white;
+  margin: 2rem auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0,0.1);
+}
+
+/* Header */
+.subscribe-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.subscribe-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.subscribe-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Content */
+.subscribe-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subscribe-description {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Form */
+.subscribe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.subscribe-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.subscribe-label {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.subscribe-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.subscribe-input:focus {
+  border-color: #28a745;
+}
+
+.subscribe-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.subscribe-checkbox input {
+  width: 16px;
+  height: 16px;
+}
+
+.subscribe-checkbox-label {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.subscribe-status {
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.subscribe-status-success {
+  color: #28a745;
+}
+
+.subscribe-status-error {
+  color: #dc2626; /* Red-600 */
+}
+
+.subscribe-button {
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.subscribe-button:hover:not(:disabled) {
+  background-color: #15803d; /* Green-700 */
+}
+
+.subscribe-button:disabled {
+  background-color: #9ca3af; /* Gray-400 */
+  cursor: not-allowed;
+}
+
+/* Footer */
+.subscribe-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.subscribe-footer p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.subscribe-footer a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.subscribe-footer a:hover {
+  text-decoration: underline;
+}
+
+.subscribe-back {
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .subscribe-container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .subscribe-title {
+    font-size: 1.5rem;
+  }
+
+  .subscribe-subtitle {
+    font-size: 1rem;
+  }
+
+  .subscribe-description,
+  .subscribe-input,
+  .subscribe-button {
+    font-size: 0.9rem;
+  }
+}
