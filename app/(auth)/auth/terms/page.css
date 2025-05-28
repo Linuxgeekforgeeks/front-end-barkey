@@ -1,0 +1,117 @@
+/* app/auth/terms/terms.css */
+
+/* Container */
+.terms-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.terms-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.terms-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.terms-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.terms-updated {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* Content */
+.terms-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.terms-section {
+  margin-bottom: 20px;
+}
+
+.terms-section h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.terms-section p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.terms-section ul {
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.terms-section ul li {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 5px;
+}
+
+/* Footer */
+.terms-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.terms-footer p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.terms-footer a {
+  color: #28a745;
+  text-decoration: none;
+}
+
+.terms-footer a:hover {
+  text-decoration: underline;
+}
+
+.terms-back {
+  margin-top: 15px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .terms-container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .terms-title {
+    font-size: 1.5rem;
+  }
+
+  .terms-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .terms-section p,
+  .terms-section ul li {
+    font-size: 0.9rem;
+  }
+}
