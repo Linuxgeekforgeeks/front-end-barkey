@@ -4,6 +4,7 @@ import FAQ from './FAQ'
 import Newsletter from './NewsletterForm'
 import Navbar from '../shared/commons/navbar/Navbar'
 import Testimonials from './Testimonial'
+import Footer from '../shared/commons/footer/Footer'
 
 function IndexPage() {
   return (
@@ -13,6 +14,7 @@ function IndexPage() {
       <FAQ/>
       <Testimonials/>
       <Newsletter/>
+      <Footer/>
     </div>
   )
 }
