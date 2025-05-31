@@ -111,6 +111,7 @@ const styles = {
   title: {
     fontSize: '2.25rem',
     fontWeight: 'bold',
+    color:"black",
     marginBottom: '1rem',
   },
   description: {

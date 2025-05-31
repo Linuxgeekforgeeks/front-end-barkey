@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Auth on Hamos',
+  title: 'Hamos Barkey',
   description: 'This is the layout for the authentication.',
 }
 

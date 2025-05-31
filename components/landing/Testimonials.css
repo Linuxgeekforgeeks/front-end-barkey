@@ -1,0 +1,186 @@
+/* Testimonials.css */
+.testimonials-wrapper {
+  background: linear-gradient(135deg, #F5DEB3 0%, #f8f5f1 100%); /* Matches footer's wheat and beige tones */
+  padding: 60px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop') no-repeat center/cover;
+  opacity: 0.1; /* Subtle bakery background image */
+  z-index: 0;
+}
+
+.design-section {
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
+}
+
+.design-title {
+  color: #8B5A2B; /* Matches footer's primary color */
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.design3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 35px;
+  padding: 50px 25px;
+  background: rgba(255, 255, 255, 0.3); /* Slightly more opaque for contrast */
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.testimonial-glass3 {
+  background: rgba(255, 255, 255, 0.2); /* Adjusted opacity for clarity */
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  padding: 45px 35px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-glass3:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.testimonial-glass3::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(255,255,255,0.1), transparent);
+  animation: rotate 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.testimonial-glass3 .inner-content {
+  position: relative;
+  z-index: 2;
+}
+
+.testimonial-glass3 .quote-mark {
+  font-size: 5rem;
+  color: rgba(255, 215, 0, 0.4); /* Gold tint for bakery theme */
+  line-height: 1;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.testimonial-glass3 .testimonial-text {
+  color: #333; /* Darker text for better readability */
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-glass3 .author-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.testimonial-glass3 .profile-image {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8B5A2B 0%, #D4A017 100%); /* Warm bakery colors */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border: 3px solid rgba(255, 215, 0, 0.3);
+}
+
+.testimonial-glass3 .author-info h4 {
+  color: #333; /* Darker for readability */
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-glass3 .author-info p {
+  color: #666; /* Matches footer's --text-light */
+  font-size: 1rem;
+}
+
+.testimonial-glass3 .rating-stars {
+  color: #FFD700;
+  font-size: 1.3rem;
+  margin-top: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #8B5A2B 0%, #D4A017 100%); /* Bakery brown gradient */
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.cta-button:hover {
+  background: linear-gradient(135deg, #6b4420 0%, #b3861e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(139, 90, 43, 0.4);
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .testimonials-wrapper {
+    padding: 40px 15px;
+  }
+
+  .design3 {
+    grid-template-columns: 1fr;
+    padding: 30px 15px;
+  }
+  
+  .testimonial-glass3 {
+    padding: 30px 20px;
+  }
+  
+  .design-title {
+    font-size: 1.5rem;
+  }
+}
