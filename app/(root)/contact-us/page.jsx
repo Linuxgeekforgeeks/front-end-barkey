@@ -103,7 +103,7 @@ export default function Contact() {
           <h3>Find Us</h3>
           <div className="map-container">
             <div className="map-placeholder">
-              [Google Maps Embed - Location: Stone Town, Zanzibar]
+            <img src="/hamos-location.png" alt="Hamos-barkey-Location" />
             </div>
           </div>
         </div>
