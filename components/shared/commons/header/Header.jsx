@@ -5,12 +5,15 @@ import Link from "next/link";
 import {
   ChevronDown,
   Home,
+  List,
   Image,
   Users,
   HelpCircle,
   Info,
   Mail,
-  List,
+  Cake,
+  Menu,
+  X,
 } from "lucide-react";
 
 const navItems = [
@@ -25,6 +28,7 @@ const navItems = [
 const LandingHeader = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   // Debounce scroll handler
@@ -44,10 +48,11 @@ const LandingHeader = () => {
     []
   );
 
-  // Handle click outside to close dropdown
+  // Handle click outside to close dropdown and mobile menu
   const handleClickOutside = useCallback((event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsDropdownOpen(false);
+      setIsMobileMenuOpen(false);
     }
   }, []);
 
@@ -66,6 +71,7 @@ const LandingHeader = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setIsDropdownOpen(false);
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -77,6 +83,12 @@ const LandingHeader = () => {
     }
   };
 
+  // Toggle mobile menu
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsDropdownOpen(false); // Close dropdown when mobile menu toggles
+  };
+
   return (
     <header
       className={`landing-header ${isScrolled ? "landing-header-scrolled" : ""}`}
@@ -85,10 +97,16 @@ const LandingHeader = () => {
       <div className="landing-header-container">
         <button
           className="landing-header-logo"
-          onClick={() => scrollToSection('welcome')}
+          onClick={() => scrollToSection("welcome")}
           aria-label="Go to welcome section"
         >
-          <h2>Hamos Barkey</h2>
+          <div className="logo-icon">
+            <Cake size={24} />
+          </div>
+          <div className="logo-text">
+            <h2>Hamos Barkey</h2>
+            <p>Zanzibar's Finest Bread</p>
+          </div>
         </button>
 
         <nav
@@ -96,7 +114,16 @@ const LandingHeader = () => {
           role="navigation"
           aria-label="Main navigation"
         >
-          <div className="landing-header-nav-links">
+          <button
+            className="mobile-menu-toggle"
+            onClick={toggleMobileMenu}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          <div className={`landing-header-nav-links ${isMobileMenuOpen ? "mobile-menu-open" : ""}`}>
             <div className="landing-header-dropdown" ref={dropdownRef}>
               <button
                 className="landing-header-dropdown-btn"
@@ -136,18 +163,12 @@ const LandingHeader = () => {
               )}
             </div>
 
-            <Link
-              href="/about-us"
-              className="landing-header-nav-link"
-            >
+            <Link href="/about-us" className="landing-header-nav-link">
               <Info size={18} />
               <span>About Us</span>
             </Link>
 
-            <Link
-              href="/contact-us"
-              className="landing-header-nav-link"
-            >
+            <Link href="/contact-us" className="landing-header-nav-link">
               <Mail size={18} />
               <span>Contact Us</span>
             </Link>

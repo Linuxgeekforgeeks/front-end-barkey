@@ -21,14 +21,14 @@ const WelcomeSection = () => {
           <p className="welcome-subtitle">
             Discover the taste of Zanzibar with our artisan breads, crafted with passion and tradition since 1985. Experience the warmth of freshly baked goodness every day.
           </p>
-          <button
+          {/* <button
             onClick={() => scrollToSection('services')}
             className="cta-button group"
             aria-label="Explore our services"
           >
             Explore Our Services
             <ArrowRight className="arrow-icon" size={20} />
-          </button>
+          </button> */}
         </div>
         <div className="bottom-gradient"></div>
       </section>
@@ -95,7 +95,7 @@ const WelcomeSection = () => {
 
           <div className="cta-section">
             <h3 className="cta-title">Ready to taste Zanzibar's finest bread?</h3>
-            <a href="#contact" className="cta-button">
+            <a href="/products" className="cta-button">
               Order Now
             </a>
           </div>
