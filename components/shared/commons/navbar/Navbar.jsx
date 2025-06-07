@@ -316,30 +316,6 @@ export default function CreativeBakeryNavbar() {
           )}
         </div>
       </nav>
-
-      <div className="content">
-        <div className="content-container">
-          <h1 className="content-title">
-            Welcome to Hamos Bakery
-          </h1>
-          <p className="content-text">
-            Experience our creative navbar design with smooth animations and modern styling.
-          </p>
-          <div className="content-grid">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="content-card">
-                <div className="card-icon">
-                  <CakeSlice className="card-icon-inner" />
-                </div>
-                <h3 className="card-title">Fresh Pastries</h3>
-                <p className="card-text">Delicious baked goods made with love and the finest ingredients.</p>
-              </div>
-            ))}
-          </div>
-          <div className="content-spacer"></div>
-          <p className="content-footer">Scroll up to see the navbar transform! ✨</p>
-        </div>
-      </div>
     </div>
   );
 }

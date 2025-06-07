@@ -1,0 +1,111 @@
+
+.landing-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  transition: all 0.3s ease;
+  background-color: #ffffff;
+  z-index: 1000;
+}
+
+.landing-header-scrolled {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.landing-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.landing-header-nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.landing-header-dropdown {
+  position: relative;
+}
+
+.landing-header-dropdown-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.landing-header-dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.landing-header-dropdown-icon.open {
+  transform: rotate(180deg);
+}
+
+.landing-header-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  min-width: 150px;
+  z-index: 1000;
+}
+
+.landing-header-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.landing-header-dropdown-item:hover,
+.landing-header-dropdown-item:focus {
+  background-color: #f5f5f5;
+}
+
+.landing-header-nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-header-nav-link:hover,
+.landing-header-nav-link:focus {
+  color: #007bff;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .landing-header-nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .landing-header-dropdown-content {
+    position: static;
+    width: 100%;
+  }
+}

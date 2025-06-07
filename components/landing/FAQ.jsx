@@ -50,7 +50,7 @@ const FAQ = () => {
   };
 
   return (
-    <section className="faq-section">
+    <section id="faqs" className="faq-section">
       <h2>❓ Frequently Asked Questions</h2>
       {faqs.map((faq) => (
         <div key={faq.id} className="faq-item">

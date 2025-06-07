@@ -55,7 +55,7 @@ const HeroCarousel = () => {
   };
 
   return (
-    <div className="carousel-container" id="hero">
+    <div className="carousel-container" id="gallery-hero">
       {carouselItems.map((item, index) => (
         <div
           key={item.id}

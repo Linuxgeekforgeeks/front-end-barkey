@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { ShoppingCart, X } from 'lucide-react';
-import './page.css';
+import React, { useState, useEffect } from "react";
+import { ShoppingCart, X } from "lucide-react";
+import "./page.css";
+import { useCartStore } from "@/stores/cart.store";
 
 const productsData = [
   {
@@ -50,70 +51,20 @@ const productsData = [
 ];
 
 const ProductsPage = () => {
-  const [cart, setCart] = useState([]);
+  const { cartItems, addToCart, removeFromCart, increaseQuantity, decreaseQuantity, updateQuantity } = useCartStore();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [scrolledCards, setScrolledCards] = useState([]);
 
-  const addToCart = (productId) => {
-    const product = productsData.find((p) => p.id === productId);
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === productId);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-    setIsCartOpen(true);
-  };
-
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
-
-  const increaseQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const decreaseQuantity = (id) => {
-    setCart((prevCart) => {
-      const item = prevCart.find((item) => item.id === id);
-      if (item.quantity > 1) {
-        return prevCart.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        );
-      }
-      return prevCart.filter((item) => item.id !== id);
-    });
-  };
-
-  const updateQuantity = (id, quantity) => {
-    if (quantity <= 0) {
-      removeFromCart(id);
-    } else {
-      setCart((prevCart) =>
-        prevCart.map((item) =>
-          item.id === id ? { ...item, quantity } : item
-        )
-      );
-    }
-  };
-
   const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
   const getCartItemCount = () => {
-    return cart.reduce((count, item) => count + item.quantity, 0);
+    return cartItems.reduce((count, item) => count + item.quantity, 0);
   };
 
   const handleScroll = () => {
-    const productCards = document.querySelectorAll('.root-product-card');
+    const productCards = document.querySelectorAll(".root-product-card");
     const newScrolledCards = [];
     productCards.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
@@ -126,8 +77,8 @@ const ProductsPage = () => {
 
   useEffect(() => {
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -135,7 +86,7 @@ const ProductsPage = () => {
       <header className="root-header">
         <div className="root-container">
           <div className="root-logo">
-            <a href="#">
+            <a href="/">
               <img src="/hti-logo.webp" alt="Hamos Bakery Logo" />
             </a>
           </div>
@@ -155,7 +106,7 @@ const ProductsPage = () => {
             {productsData.map((product, index) => (
               <div
                 key={product.id}
-                className={`root-product-card ${scrolledCards[index] ? 'root-scrolled' : ''}`}
+                className={`root-product-card ${scrolledCards[index] ? "root-scrolled" : ""}`}
               >
                 <div
                   className="root-product-image"
@@ -167,7 +118,7 @@ const ProductsPage = () => {
                   <p className="root-product-price">TSh {product.price.toLocaleString()}</p>
                   <button
                     className="root-btn root-add-to-cart"
-                    onClick={() => addToCart(product.id)}
+                    onClick={() => addToCart(product)}
                   >
                     Add to Cart
                   </button>
@@ -178,7 +129,7 @@ const ProductsPage = () => {
         </div>
       </section>
 
-      <div className={`root-cart-sidebar ${isCartOpen ? 'root-open' : ''}`}>
+      <div className={`root-cart-sidebar ${isCartOpen ? "root-open" : ""}`}>
         <div className="root-cart-header">
           <h2>Your Cart</h2>
           <button className="root-close-cart" onClick={() => setIsCartOpen(false)}>
@@ -186,10 +137,10 @@ const ProductsPage = () => {
           </button>
         </div>
         <div className="root-cart-items">
-          {cart.length === 0 ? (
+          {cartItems.length === 0 ? (
             <p className="root-empty-cart">No Items in Cart</p>
           ) : (
-            cart.map((item) => (
+            cartItems.map((item) => (
               <div key={item.id} className="root-cart-item">
                 <div
                   className="root-cart-item-image"
@@ -210,7 +161,7 @@ const ProductsPage = () => {
                       className="root-quantity-input"
                       value={item.quantity}
                       min="1"
-                      onChange={(e) => updateQuantity(item.id, parseInt(e.target.value))}
+                      onChange={(e) => updateQuantity(item.id, parseInt(e.target.value) || 1)}
                     />
                     <button
                       className="root-quantity-btn root-increase"
@@ -238,7 +189,7 @@ const ProductsPage = () => {
       </div>
 
       <div
-        className={`root-overlay ${isCartOpen ? 'root-open' : ''}`}
+        className={`root-overlay ${isCartOpen ? "root-open" : ""}`}
         onClick={() => setIsCartOpen(false)}
       ></div>
     </>
