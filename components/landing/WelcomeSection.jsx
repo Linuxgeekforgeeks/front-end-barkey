@@ -1,39 +1,93 @@
-"use client"; // 👈 Add this at the very top
-
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './WelcomeSection.css';
-import { ArrowRight } from 'lucide-react';
+import { useModalStore } from '@/stores/modal.store';
 
 const WelcomeSection = () => {
-  const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const { openVideoModal } = useModalStore();
+  const title = "Welcome to Hamos Barkey";
+  const [displayedTitle, setDisplayedTitle] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const [typingComplete, setTypingComplete] = useState(false);
+  const typingTimeoutRef = useRef(null);
+  const cursorTimeoutRef = useRef(null);
+
+  // Typing animation effect with infinite repeat
+  useEffect(() => {
+    if (!typingComplete) {
+      if (currentIndex < title.length) {
+        // Type the next character
+        typingTimeoutRef.current = setTimeout(() => {
+          setDisplayedTitle(prev => prev + title[currentIndex]);
+          setCurrentIndex(prev => prev + 1);
+        }, 150);
+      } else {
+        // Typing is complete, wait before resetting
+        typingTimeoutRef.current = setTimeout(() => {
+          setTypingComplete(true);
+          setShowCursor(false); // Hide cursor
+          // Reset after a pause
+          setTimeout(() => {
+            setDisplayedTitle('');
+            setCurrentIndex(0);
+            setTypingComplete(false);
+            setShowCursor(true); // Show cursor again
+          }, 1000); // 1-second pause before restarting
+        }, 3000); // 3-second pause after typing completes
+      }
     }
-  };
+
+    return () => {
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
+    };
+  }, [currentIndex, title.length, typingComplete]);
+
+  // Cursor blinking effect
+  useEffect(() => {
+    let interval;
+    if (showCursor) {
+      interval = setInterval(() => {
+        setShowCursor(prev => !prev);
+      }, 500);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+      if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+    };
+  }, [showCursor]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+      if (cursorTimeoutRef.current) clearTimeout(cursorTimeoutRef.current);
+    };
+  }, []);
 
   return (
-    <>
+    <div>
       <section id="welcome" className="welcome-section">
-        <div className="background-gradient"></div>
         <div className="content-container">
-          <h1 className="welcome-title">Welcome to Hamos Barkey</h1>
+          <h1 className="welcome-title">
+            {displayedTitle}
+            <span className={`cursor ${showCursor ? 'visible' : 'hidden'}`}>|</span>
+          </h1>
           <p className="welcome-subtitle">
-            Discover the taste of Zanzibar with our artisan breads, crafted with passion and tradition since 1985. Experience the warmth of freshly baked goodness every day.
+            Discover the taste of Zanzibar with our artisan breads, crafted with passion and tradition since 2016. Experience the warmth of freshly baked goodness every day.
           </p>
-          {/* <button
-            onClick={() => scrollToSection('services')}
-            className="cta-button group"
-            aria-label="Explore our services"
-          >
-            Explore Our Services
-            <ArrowRight className="arrow-icon" size={20} />
-          </button> */}
+          
+          <div className="watchdemo">
+            <button onClick={() => openVideoModal()} className="demo-button">
+              <span className="button-text">Watch Demo</span>
+              <span className="button-icon">▶</span>
+            </button>
+          </div>
         </div>
-        <div className="bottom-gradient"></div>
       </section>
 
-      {/* Services Section */}
       <section className="services-section" id="services">
         <div className="container">
           <div className="section-header">
@@ -96,12 +150,13 @@ const WelcomeSection = () => {
           <div className="cta-section">
             <h3 className="cta-title">Ready to taste Zanzibar's finest bread?</h3>
             <a href="/products" className="cta-button">
-              Order Now
+              <span>Order Now</span>
+              <span className="arrow">→</span>
             </a>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
